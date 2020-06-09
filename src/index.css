@@ -12,3 +12,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.info {
+  position: relative;
+  width: 800px;
+  margin: 10px auto;
+  color: white;
+  font-style: bold;
+  font-family: fantasy;
+  font-size: 30px;
+  text-align: center;
+}
+
+.controls {
+  position: relative;
+  width: 800px;
+  margin: 0px auto;
+  color: white;
+  font-style: bold;
+  font-family: fantasy;
+  font-size: 18px;
+  text-align: center;
+  
+}
+
+.container {
+  display: block;
+}

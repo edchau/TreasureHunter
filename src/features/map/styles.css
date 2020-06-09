@@ -4,8 +4,12 @@
     background-color: #42b842;
 }
 
-.grass {
+.clear {
     background-color: #42b842;
+}
+
+.grass {
+    background-image: url('/tiles/grass.png');
 }
 
 .rock {
