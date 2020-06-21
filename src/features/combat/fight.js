@@ -27,17 +27,17 @@ const FightModal = props => {
         <div className={`monster ${monster.name}`} />
         <div className="hero" />
         <p className="combatInfo">
-            Enemy Health: {monster.health}
-            <br/>
-            Your Health: {store.getState().player.health}
+            Enemy Health: {monster.health} &nbsp;&nbsp;
+            Your Health: {store.getState().player.health} &nbsp;&nbsp;
+            <button className="actions" onClick={() => heal(monster)}>Heal</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="actions" onClick={() => attack(monster)}>Attack</button>
+            <textarea
+                className="log"
+                value={store.getState().player.log}
+                readonly
+            />
         </p>
-        <button className="actions" onClick={() => heal(monster)}>Heal</button>
-        <button className="actions" onClick={() => attack(monster)}>Attack</button>
-        <textarea
-            className="log"
-            value={store.getState().player.log}
-            readonly
-        />
         
     </div>
 }
