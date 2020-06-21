@@ -50,7 +50,7 @@ const handleMovement = player => {
         const x = newPos[0] / SPRITE_SIZE
         const nextTile = tiles[y][x]
         if (nextTile == 4) {
-            alert("Congratulations!")
+            window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         }
         return nextTile < 5
     }
