@@ -11,7 +11,7 @@ function App() {
       </div>
       <div className="controls">
         <p>
-          Use arrow keys to move.
+          Use arrow keys to move. Scroll down to see combat buttons.
         </p>
       </div>
       <World />
