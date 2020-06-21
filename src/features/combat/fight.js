@@ -12,6 +12,13 @@ const endCombat = () => {
             enemy: {}
         }
     })
+    store.dispatch({
+        type: 'TAKE_DAMAGE',
+        payload: {
+            ...store.getState().player,
+            log: ""
+        }
+    })
 }
 
 const FightModal = props => {
@@ -26,6 +33,12 @@ const FightModal = props => {
         </p>
         <button className="actions" onClick={() => heal(monster)}>Heal</button>
         <button className="actions" onClick={() => attack(monster)}>Attack</button>
+        <textarea
+            className="log"
+            value={store.getState().player.log}
+            readonly
+        />
+        
     </div>
 }
 
@@ -40,12 +53,14 @@ const monsterDamage = (monster) => {
     }
 }
 
-const monsterAttack = (monster) => {
+const monsterAttack = (monster, prevLog) => {
+    const dmg = monsterDamage(monster.name)
     store.dispatch({
         type: 'TAKE_DAMAGE',
         payload: {
             ...store.getState().player,
-            health: store.getState().player.health-monsterDamage(monster.name)
+            health: store.getState().player.health-dmg,
+            log: prevLog + " and took " + dmg + " damage"
         }
     })
     if (store.getState().player.health <= 0) {
@@ -63,11 +78,12 @@ const damage = () =>  {
 }
 
 const attack = (monster) => {
+    const dmg = damage()
     store.dispatch({
         type: 'MONSTER',
         payload: {
             enemy: {...store.getState().monster.enemy,
-                health: store.getState().monster.enemy.health-damage()
+                health: store.getState().monster.enemy.health-dmg
             }
         }
     })
@@ -76,13 +92,15 @@ const attack = (monster) => {
             type: 'MONSTER_DEAD',
         })
         endCombat()
+    } else {
+        monsterAttack(monster, "You dealt " + dmg + " damage")
     }
-    monsterAttack(monster)
 }
 
 const heal = (monster) => {
     const curHealth  = store.getState().player.health
-    let health = (curHealth+damage())
+    const dmg = damage()
+    let health = (curHealth+dmg)
     health = health > 40 ? 40 : health
     if (curHealth < 40) {
         store.dispatch({
@@ -92,8 +110,8 @@ const heal = (monster) => {
                 health
             }
         })
+        monsterAttack(monster, "You healed " + dmg + " points of health")
     }
-    monsterAttack(monster)
 }
 
 const mapStateToProps = state => {

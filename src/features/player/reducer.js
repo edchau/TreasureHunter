@@ -3,7 +3,8 @@ const initialState = {
     spriteLocation: '0px 0px',
     direction: 'EAST',
     walkIndex: 0,
-    health: 40
+    health: 40,
+    log: ""
 }
 
 const playerReducer = (state=initialState, action) => {
