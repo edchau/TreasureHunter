@@ -11,8 +11,7 @@ function App() {
       </div>
       <div className="controls">
         <p>
-          Use arrow keys to move. Each turn, you can either heal or attack the enemy.
-          At the end of your turn, the monster will attack you.
+          Use arrow keys to move.
         </p>
       </div>
       <World />
